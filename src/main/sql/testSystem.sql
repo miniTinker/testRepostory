@@ -152,7 +152,7 @@ CREATE TABLE ks_user_exam (
   COMMENT '试卷头表id',
   score             FLOAT(3, 2)                     DEFAULT 0.00
   COMMENT '总得分',
-  status            VARCHAR(255) COMMENT '状态(未考试NEW,已考试HAS)',
+  status            VARCHAR(255) COMMENT '状态(未考试NEW,考试中HASING,已考试HAS)',
   VERSION_NUM       INT(11)                         DEFAULT 0
   COMMENT '版本号',
   CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL
