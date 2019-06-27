@@ -391,4 +391,44 @@ CREATE TABLE USER_ONE_TASK_SCORE
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 24
-    DEFAULT CHARSET = utf8;
+    DEFAULT CHARSET = utf8
+    COMMENT '人员单任务得分表';
+
+-- 创建人员同类任务得分表(通过人员单任得分统计,通过USER_ID,PJC_ID,TS_ID三个维度汇总)
+DROP TABLE IF EXISTS USER_SIMILAR_SCORE;
+CREATE TABLE USER_SIMILAR_SCORE
+(
+    USS_ID            INT(11)                NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    USER_ID           INT(11)                NOT NULL COMMENT '用户ID',
+    PJC_ID            INT(11) COMMENT '岗位ID',
+    TS_ID             INT(11) COMMENT '任务ID',
+    TJ_ID             INT(11) COMMENT '岗位任务ID',
+    USER_NAME         VARCHAR(255) COMMENT '人员名称',
+    JOBS_NAME         VARCHAR(255) COMMENT '岗位名称',
+    HR_NAME           VARCHAR(255) COMMENT 'HR岗位',
+    SAP_NUM           VARCHAR(255) COMMENT 'SAP号',
+    JOB_TASK          VARCHAR(255) COMMENT '岗位任务',
+    TYPE              VARCHAR(255) COMMENT '任务类型(快码:TASK_TYPE)',
+    IS_SYNC           VARCHAR(2) COMMENT '是否同步(快码:TASK_IS)',
+    TASK_COUNT        FLOAT COMMENT '统计任务数',
+    COUNT_SCORE       FLOAT COMMENT '任务总得分',
+    MAX_SCORE         FLOAT COMMENT '当期最高得分',
+    CONVERSION_SCORE  FLOAT(3, 2) COMMENT '换算百分制分数',
+    STATISTICAL_TIME  DATETIME COMMENT '统计时间',
+    VERSION_NUM       INT(11)  DEFAULT 0 COMMENT '版本号',
+    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL COMMENT '创建时间',
+    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL COMMENT '创建人',
+    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL COMMENT '最后修改人',
+    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL COMMENT '最后修改时间',
+    LAST_UPDATE_LOGIN INT(11) COMMENT '最后登录人',
+    PRIMARY KEY (USS_ID),
+    KEY IDX_USER_ID (USER_ID),
+    KEY IDX_PJC_ID (PJC_ID),
+    KEY IDX_TJ_ID (TJ_ID),
+    KEY IDX_TS_ID (TS_ID)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 34
+    DEFAULT CHARSET = utf8
+    COMMENT '人员同类任务得分表';
+
