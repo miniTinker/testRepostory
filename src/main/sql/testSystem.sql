@@ -6,6 +6,9 @@ CREATE DATABASE IF NOT EXISTS vrrg;
 -- 使用数据库
 USE vrrg;
 
+-- 关闭外键校验
+SET FOREIGN_KEY_CHECKS =0;
+
 -- 创建选择题表
 DROP TABLE IF EXISTS ks_choice_question;
 CREATE TABLE ks_choice_question
