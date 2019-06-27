@@ -7,7 +7,7 @@ CREATE DATABASE IF NOT EXISTS vrrg;
 USE vrrg;
 
 -- 关闭外键校验
-set foreign_key_checks =0;
+set foreign_key_checks = 0;
 -- 创建岗位配置表
 DROP TABLE IF EXISTS P_JOB_CONFIGURATION;
 CREATE TABLE P_JOB_CONFIGURATION
