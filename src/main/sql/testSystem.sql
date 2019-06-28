@@ -7,215 +7,165 @@ CREATE DATABASE IF NOT EXISTS vrrg;
 USE vrrg;
 
 -- 关闭外键校验
-SET FOREIGN_KEY_CHECKS =0;
+SET FOREIGN_KEY_CHECKS = 0;
 
--- 创建选择题表
-DROP TABLE IF EXISTS ks_choice_question;
-CREATE TABLE ks_choice_question
+-- 创建选择题表DROP TABLE IF EXISTS KS_CHOICE_QUESTION;
+CREATE TABLE KS_CHOICE_QUESTION
 (
-    cq_id             INT(11)                NOT NULL AUTO_INCREMENT
-        COMMENT 'id',
-    answer            VARCHAR(20)            NOT NULL
-        COMMENT '正确答案',
-    content           VARCHAR(400)           NOT NULL
-        COMMENT '题目',
-    contributor       INT(11) COMMENT '题目提供者',
-    description       VARCHAR(400) COMMENT '题目解析',
-    choice_a          VARCHAR(255) COMMENT '选项A',
-    choice_b          VARCHAR(255) COMMENT '选项B',
-    choice_c          VARCHAR(255) COMMENT '选项C',
-    choice_d          VARCHAR(255) COMMENT '选项D',
-    choice_e          VARCHAR(255) COMMENT '选项E',
-    choice_f          VARCHAR(255) COMMENT '选项F',
-    choice_g          VARCHAR(255) COMMENT '选项G',
-    choice_h          VARCHAR(255) COMMENT '选项H',
-    knowledge_point   VARCHAR(255) COMMENT '知识点',
-    type              VARCHAR(255) COMMENT '类型(单选RADIO，多选MULTI_SELECT)',
-    source            VARCHAR(255) COMMENT '来源(导入IMPORT，手工录入MANUALLY）',
-    VERSION_NUM       INT(11)  DEFAULT 0
-        COMMENT '版本号',
-    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL
-        COMMENT '创建时间',
-    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL
-        COMMENT '创建人',
-    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL
-        COMMENT '最后修改人',
-    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL
-        COMMENT '最后修改时间',
+    CQ_ID             INT(11)                NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    ANSWER            VARCHAR(20)            NOT NULL COMMENT '正确答案',
+    CONTENT           VARCHAR(400)           NOT NULL COMMENT '题目',
+    CONTRIBUTOR       INT(11) COMMENT '题目提供者',
+    DESCRIPTION       VARCHAR(400) COMMENT '题目解析',
+    CHOICE_A          VARCHAR(255) COMMENT '选项A',
+    CHOICE_B          VARCHAR(255) COMMENT '选项B',
+    CHOICE_C          VARCHAR(255) COMMENT '选项C',
+    CHOICE_D          VARCHAR(255) COMMENT '选项D',
+    CHOICE_E          VARCHAR(255) COMMENT '选项E',
+    CHOICE_F          VARCHAR(255) COMMENT '选项F',
+    CHOICE_G          VARCHAR(255) COMMENT '选项G',
+    CHOICE_H          VARCHAR(255) COMMENT '选项H',
+    KNOWLEDGE_POINT   VARCHAR(255) COMMENT '知识点',
+    TYPE              VARCHAR(255) COMMENT '类型(单选RADIO，多选MULTI_SELECT)',
+    SOURCE            VARCHAR(255) COMMENT '来源(导入IMPORT，手工录入MANUALLY）',
+    VERSION_NUM       INT(11)  DEFAULT 0 COMMENT '版本号',
+    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL COMMENT '创建时间',
+    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL COMMENT '创建人',
+    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL COMMENT '最后修改人',
+    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL COMMENT '最后修改时间',
     LAST_UPDATE_LOGIN INT(11) COMMENT '最后登录人',
-    PRIMARY KEY (cq_id)
+    PRIMARY KEY (CQ_ID)
 )
-    ENGINE = InnoDB
+    ENGINE = INNODB
     AUTO_INCREMENT = 11
-    DEFAULT CHARSET = utf8
+    DEFAULT CHARSET = UTF8
     COMMENT '选择题表';
 
 -- 创建判断题表
-DROP TABLE IF EXISTS ks_judge_quesion;
-CREATE TABLE ks_judge_quesion
+DROP TABLE IF EXISTS KS_JUDGE_QUESION;
+CREATE TABLE KS_JUDGE_QUESION
 (
-    jq_id             INT(11)                NOT NULL AUTO_INCREMENT
-        COMMENT 'id',
-    answer            VARCHAR(20)            NOT NULL
-        COMMENT '正确答案',
-    content           VARCHAR(20)            NOT NULL
-        COMMENT '题目',
-    contributor       INT(11) COMMENT '题目提供者',
-    description       VARCHAR(400) COMMENT '题目解析',
-    knowledge_point   VARCHAR(255) COMMENT '知识点',
-    source            VARCHAR(255) COMMENT '来源(导入IMPORT，手工录入MANUALLY）',
-    VERSION_NUM       INT(11)  DEFAULT 0
-        COMMENT '版本号',
-    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL
-        COMMENT '创建时间',
-    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL
-        COMMENT '创建人',
-    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL
-        COMMENT '最后修改人',
-    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL
-        COMMENT '最后修改时间',
+    JQ_ID             INT(11)                NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    ANSWER            VARCHAR(20)            NOT NULL COMMENT '正确答案',
+    CONTENT           VARCHAR(20)            NOT NULL COMMENT '题目',
+    CONTRIBUTOR       INT(11) COMMENT '题目提供者',
+    DESCRIPTION       VARCHAR(400) COMMENT '题目解析',
+    KNOWLEDGE_POINT   VARCHAR(255) COMMENT '知识点',
+    SOURCE            VARCHAR(255) COMMENT '来源(导入IMPORT，手工录入MANUALLY）',
+    VERSION_NUM       INT(11)  DEFAULT 0 COMMENT '版本号',
+    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL COMMENT '创建时间',
+    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL COMMENT '创建人',
+    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL COMMENT '最后修改人',
+    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL COMMENT '最后修改时间',
     LAST_UPDATE_LOGIN INT(11) COMMENT '最后登录人',
-    PRIMARY KEY (jq_id)
+    PRIMARY KEY (JQ_ID)
 )
-    ENGINE = InnoDB
+    ENGINE = INNODB
     AUTO_INCREMENT = 21
-    DEFAULT CHARSET = utf8
+    DEFAULT CHARSET = UTF8
     COMMENT '判断题表';
 
 -- 创建试卷头表
-DROP TABLE IF EXISTS ks_exam;
-CREATE TABLE ks_exam
+DROP TABLE IF EXISTS KS_EXAM;
+CREATE TABLE KS_EXAM
 (
-    e_id              INT(11)                NOT NULL AUTO_INCREMENT
-        COMMENT 'id',
-    name              VARCHAR(200)           NOT NULL
-        COMMENT '试卷名',
-    detail            VARCHAR(400) COMMENT '试卷描述',
-    type              VARCHAR(255)           NOT NULL
-        COMMENT '组卷类型(随机RANDOM,手动MANUAL)',
-    VERSION_NUM       INT(11)  DEFAULT 0
-        COMMENT '版本号',
-    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL
-        COMMENT '创建时间',
-    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL
-        COMMENT '创建人',
-    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL
-        COMMENT '最后修改人',
-    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL
-        COMMENT '最后修改时间',
+    E_ID              INT(11)                NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    NAME              VARCHAR(200)           NOT NULL COMMENT '试卷名',
+    DETAIL            VARCHAR(400) COMMENT '试卷描述',
+    TYPE              VARCHAR(255)           NOT NULL COMMENT '组卷类型(随机RANDOM,手动MANUAL)',
+    STATUS            VARCHAR(2) COMMENT '发布状态(快码:TASK_IS,已发布:Y,未发布:N)',
+    VERSION_NUM       INT(11)  DEFAULT 0 COMMENT '版本号',
+    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL COMMENT '创建时间',
+    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL COMMENT '创建人',
+    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL COMMENT '最后修改人',
+    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL COMMENT '最后修改时间',
     LAST_UPDATE_LOGIN INT(11) COMMENT '最后登录人',
-    PRIMARY KEY (e_id)
+    PRIMARY KEY (E_ID)
 )
-    ENGINE = InnoDB
+    ENGINE = INNODB
     AUTO_INCREMENT = 31
-    DEFAULT CHARSET = utf8
+    DEFAULT CHARSET = UTF8
     COMMENT '试卷头表';
 
 -- 创建试卷明细表
-DROP TABLE IF EXISTS ks_exam_detail;
-CREATE TABLE ks_exam_detail
+DROP TABLE IF EXISTS KS_EXAM_DETAIL;
+CREATE TABLE KS_EXAM_DETAIL
 (
-    ed_id              INT(11)                   NOT NULL AUTO_INCREMENT
-        COMMENT 'id',
-    question_type      VARCHAR(255) COMMENT '问题类型(单选RADIO，多选MULTI_SELECT,判断JUDGE)',
-    choice_question_id INT(11) COMMENT '选择题id',
-    judge_question_id  INT(11) COMMENT '判断题id',
-    exam_id            INT(11)                   NOT NULL
-        COMMENT '头表id',
-    score              FLOAT(3, 2) DEFAULT 0.00
-        COMMENT '分数',
-    VERSION_NUM        INT(11)     DEFAULT 0
-        COMMENT '版本号',
-    CREATION_DATE      DATETIME    DEFAULT NOW() NOT NULL
-        COMMENT '创建时间',
-    CREATED_BY         INT(11)     DEFAULT -1    NOT NULL
-        COMMENT '创建人',
-    LAST_UPDATED_BY    INT(11)     DEFAULT -1    NOT NULL
-        COMMENT '最后修改人',
-    LAST_UPDATE_DATE   DATETIME    DEFAULT NOW() NOT NULL
-        COMMENT '最后修改时间',
+    ED_ID              INT(11)                   NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    QUESTION_TYPE      VARCHAR(255) COMMENT '问题类型(单选RADIO，多选MULTI_SELECT,判断JUDGE)',
+    CHOICE_QUESTION_ID INT(11) COMMENT '选择题ID',
+    JUDGE_QUESTION_ID  INT(11) COMMENT '判断题ID',
+    EXAM_ID            INT(11)                   NOT NULL COMMENT '头表ID',
+    SCORE              FLOAT(3, 2) DEFAULT 0.00 COMMENT '分数',
+    VERSION_NUM        INT(11)     DEFAULT 0 COMMENT '版本号',
+    CREATION_DATE      DATETIME    DEFAULT NOW() NOT NULL COMMENT '创建时间',
+    CREATED_BY         INT(11)     DEFAULT -1    NOT NULL COMMENT '创建人',
+    LAST_UPDATED_BY    INT(11)     DEFAULT -1    NOT NULL COMMENT '最后修改人',
+    LAST_UPDATE_DATE   DATETIME    DEFAULT NOW() NOT NULL COMMENT '最后修改时间',
     LAST_UPDATE_LOGIN  INT(11) COMMENT '最后登录人',
-    PRIMARY KEY (ed_id),
-    FOREIGN KEY (choice_question_id) REFERENCES ks_choice_question (cq_id),
-    FOREIGN KEY (judge_question_id) REFERENCES ks_judge_quesion (jq_id),
-    FOREIGN KEY (exam_id) REFERENCES ks_exam (e_id),
-    KEY idx_choice_question_id (choice_question_id),
-    KEY idx_judge_question_id (judge_question_id),
-    KEY idx_exam_id (exam_id)
+    PRIMARY KEY (ED_ID),
+    FOREIGN KEY (CHOICE_QUESTION_ID) REFERENCES KS_CHOICE_QUESTION (CQ_ID),
+    FOREIGN KEY (JUDGE_QUESTION_ID) REFERENCES KS_JUDGE_QUESION (JQ_ID),
+    FOREIGN KEY (EXAM_ID) REFERENCES KS_EXAM (E_ID),
+    KEY IDX_CHOICE_QUESTION_ID (CHOICE_QUESTION_ID),
+    KEY IDX_JUDGE_QUESTION_ID (JUDGE_QUESTION_ID),
+    KEY IDX_EXAM_ID (EXAM_ID)
 )
-    ENGINE = InnoDB
+    ENGINE = INNODB
     AUTO_INCREMENT = 41
-    DEFAULT CHARSET = utf8
+    DEFAULT CHARSET = UTF8
     COMMENT '试卷明细表';
 
 -- 创建人员试卷关联表
-DROP TABLE IF EXISTS ks_user_exam;
-CREATE TABLE ks_user_exam
+DROP TABLE IF EXISTS KS_USER_EXAM;
+CREATE TABLE KS_USER_EXAM
 (
-    ue_id             INT(11)                   NOT NULL AUTO_INCREMENT
-        COMMENT 'id',
-    user_id           INT(11)                   NOT NULL
-        COMMENT '用户id',
-    exam_id           INT(11)                   NOT NULL
-        COMMENT '试卷头表id',
-    score             FLOAT(3, 2) DEFAULT 0.00
-        COMMENT '总得分',
-    status            VARCHAR(255) COMMENT '状态(未考试NEW,考试中HASING,已考试HAS)',
+    UE_ID             INT(11)                   NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    USER_ID           INT(11)                   NOT NULL COMMENT '用户ID',
+    EXAM_ID           INT(11)                   NOT NULL COMMENT '试卷头表ID',
+    SCORE             FLOAT(3, 2) DEFAULT 0.00 COMMENT '总得分',
+    STATUS            VARCHAR(255) COMMENT '状态(未考试NEW,考试中HASING,已考试HAS)',
     TYPE              VARCHAR(255) COMMENT '考试类型(快码:KS_TYPE,正式考试:FORMAL,模拟考试:SIMULATION)',
-    VERSION_NUM       INT(11)     DEFAULT 0
-        COMMENT '版本号',
-    CREATION_DATE     DATETIME    DEFAULT NOW() NOT NULL
-        COMMENT '创建时间',
-    CREATED_BY        INT(11)     DEFAULT -1    NOT NULL
-        COMMENT '创建人',
-    LAST_UPDATED_BY   INT(11)     DEFAULT -1    NOT NULL
-        COMMENT '最后修改人',
-    LAST_UPDATE_DATE  DATETIME    DEFAULT NOW() NOT NULL
-        COMMENT '最后修改时间',
+    VERSION_NUM       INT(11)     DEFAULT 0 COMMENT '版本号',
+    CREATION_DATE     DATETIME    DEFAULT NOW() NOT NULL COMMENT '创建时间',
+    CREATED_BY        INT(11)     DEFAULT -1    NOT NULL COMMENT '创建人',
+    LAST_UPDATED_BY   INT(11)     DEFAULT -1    NOT NULL COMMENT '最后修改人',
+    LAST_UPDATE_DATE  DATETIME    DEFAULT NOW() NOT NULL COMMENT '最后修改时间',
     LAST_UPDATE_LOGIN INT(11) COMMENT '最后登录人',
-    PRIMARY KEY (ue_id),
-    FOREIGN KEY (exam_id) REFERENCES ks_exam (e_id),
-    KEY idx_user_id (user_id),
-    KEY idx_exam_id (exam_id)
+    PRIMARY KEY (UE_ID),
+    FOREIGN KEY (EXAM_ID) REFERENCES KS_EXAM (E_ID),
+    KEY IDX_USER_ID (USER_ID),
+    KEY IDX_EXAM_ID (EXAM_ID)
 )
-    ENGINE = InnoDB
+    ENGINE = INNODB
     AUTO_INCREMENT = 51
-    DEFAULT CHARSET = utf8
+    DEFAULT CHARSET = UTF8
     COMMENT '人员试卷关联表';
 
 -- 创建人员答题表
-DROP TABLE IF EXISTS ks_user_answer;
-CREATE TABLE ks_user_answer
+DROP TABLE IF EXISTS KS_USER_ANSWER;
+CREATE TABLE KS_USER_ANSWER
 (
-    ua_id             INT(11)                NOT NULL AUTO_INCREMENT
-        COMMENT 'id',
-    user_exam_id      INT(11)                NOT NULL
-        COMMENT '人员试卷关联id',
-    user_id           INT(11)                NOT NULL
-        COMMENT '用户id',
-    exam_detail_id    INT(11)                NOT NULL
-        COMMENT '试卷明细id',
-    answer            VARCHAR(20) COMMENT '答案',
-    y_or_n            VARCHAR(2) COMMENT '答案是否正确"Y","N"',
-    VERSION_NUM       INT(11)  DEFAULT 0
-        COMMENT '版本号',
-    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL
-        COMMENT '创建时间',
-    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL
-        COMMENT '创建人',
-    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL
-        COMMENT '最后修改人',
-    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL
-        COMMENT '最后修改时间',
+    UA_ID             INT(11)                NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    USER_EXAM_ID      INT(11)                NOT NULL COMMENT '人员试卷关联ID',
+    USER_ID           INT(11)                NOT NULL COMMENT '用户ID',
+    EXAM_DETAIL_ID    INT(11)                NOT NULL COMMENT '试卷明细ID',
+    ANSWER            VARCHAR(20) COMMENT '答案',
+    Y_OR_N            VARCHAR(2) COMMENT '答案是否正确"Y","N"',
+    VERSION_NUM       INT(11)  DEFAULT 0 COMMENT '版本号',
+    CREATION_DATE     DATETIME DEFAULT NOW() NOT NULL COMMENT '创建时间',
+    CREATED_BY        INT(11)  DEFAULT -1    NOT NULL COMMENT '创建人',
+    LAST_UPDATED_BY   INT(11)  DEFAULT -1    NOT NULL COMMENT '最后修改人',
+    LAST_UPDATE_DATE  DATETIME DEFAULT NOW() NOT NULL COMMENT '最后修改时间',
     LAST_UPDATE_LOGIN INT(11) COMMENT '最后登录人',
-    PRIMARY KEY (ua_id),
-    FOREIGN KEY (user_exam_id) REFERENCES ks_user_exam (ue_id),
-    FOREIGN KEY (exam_detail_id) REFERENCES ks_exam_detail (ed_id),
-    KEY idx_user_id (user_id),
-    KEY idx_user_exam_id (user_exam_id),
-    KEY idx_exam_detail_id (exam_detail_id)
+    PRIMARY KEY (UA_ID),
+    FOREIGN KEY (USER_EXAM_ID) REFERENCES KS_USER_EXAM (UE_ID),
+    FOREIGN KEY (EXAM_DETAIL_ID) REFERENCES KS_EXAM_DETAIL (ED_ID),
+    KEY IDX_USER_ID (USER_ID),
+    KEY IDX_USER_EXAM_ID (USER_EXAM_ID),
+    KEY IDX_EXAM_DETAIL_ID (EXAM_DETAIL_ID)
 )
-    ENGINE = InnoDB
+    ENGINE = INNODB
     AUTO_INCREMENT = 61
-    DEFAULT CHARSET = utf8
+    DEFAULT CHARSET = UTF8
     COMMENT '人员答题表';
