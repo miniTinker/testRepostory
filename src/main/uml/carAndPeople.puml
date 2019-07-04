@@ -1,0 +1,19 @@
+@startuml
+
+title 社会
+scale 1.5
+
+abstract class 车
+车<|.left.小汽车
+车<|.right.自行车
+
+小汽车*-left-轮胎
+发动机--*小汽车
+
+小汽车<|--suv
+学生..left.>自行车
+学生-left-o 班级
+
+身份证-up-学生
+
+@enduml
