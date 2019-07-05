@@ -150,6 +150,7 @@ CREATE TABLE KS_USER_EXAM
 (
     UE_ID             INT(11)                   NOT NULL AUTO_INCREMENT COMMENT 'ID',
     USER_ID           INT(11)                   NOT NULL COMMENT '用户ID',
+    EXAMINERS         INT(11) COMMENT '阅卷人ID,只针对主观题',
     EXAM_ID           INT(11)                   NOT NULL COMMENT '试卷头表ID',
     SCORE             FLOAT(6, 2) DEFAULT 0.00 COMMENT '总得分',
     STATUS            VARCHAR(255) COMMENT '状态(未考试NEW,考试中HASING,已考试HAS)',
