@@ -48,7 +48,7 @@ $$
 DELIMITER ;
 
 SET @r_result=-3;
-CALL execute_seckill(1002, 13502178891, now(), @r_result);
+CALL seckill.execute_seckill(1002, 13502178891, now(), @r_result);
 
 -- 获取结果
 SELECT @r_result;
