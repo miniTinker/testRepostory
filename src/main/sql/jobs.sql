@@ -201,6 +201,7 @@ CREATE TABLE TASK_STANDARD
     TS_ID             INT(11)                NOT NULL AUTO_INCREMENT COMMENT '任务ID',
     TS_CODE           varchar(40) COMMENT '任务编码',
     TS_NAME           VARCHAR(255) COMMENT '任务名称',
+    TASK_GROUP        VARCHAR(255) COMMENT '任务组(快码:TASK_GROUP)',
     TYPE              varchar(225) COMMENT '任务类型（快码：TASK_TYPE）',
     PRIORITY          varchar(255) COMMENT '优先级（快码:TASK_PRIORITY）',
     IS_SYNC           VARCHAR(2) COMMENT '是否同步(快码:TASK_IS)',
