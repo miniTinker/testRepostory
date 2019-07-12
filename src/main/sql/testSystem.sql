@@ -1,4 +1,5 @@
 -- 数据库初始化脚本
+-- 考试系统相关表
 
 -- 创建数据库
 CREATE DATABASE IF NOT EXISTS vrrg;
